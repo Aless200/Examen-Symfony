@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <section>
+        <h2 class="text-4xl text-center m-4">Nous contacter</h2>
+        <div class="mt-10 max-w-2xl mx-auto">
+            {{ form_start(formContact) }}
+            {{ form_widget(formContact) }}
+
+            <input type="submit" class="inline-block w-full bg-indigo-500 hover:bg-indigo-600 p-4" value="Envoyer">
+            {{ form_end(formContact) }}
+        </div>
+    </section>
+{% endblock %}
+

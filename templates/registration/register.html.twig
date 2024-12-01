@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <main>
+        <section>
+            <h2 class="text-4xl text-center m-4">S'enregistrer</h2>
+            <div class="mt-10 max-w-2xl mx-auto">
+                {{ form_start(registrationForm) }}
+                {{ form_widget(registrationForm) }}
+
+                <input type="submit" class="inline-block w-full bg-indigo-500 hover:bg-indigo-600 p-4" value="s'enregistrer">
+                {{ form_end(registrationForm) }}
+            </div>
+        </section>
+    </main>
+{% endblock %}

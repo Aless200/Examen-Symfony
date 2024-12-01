@@ -1,0 +1,13 @@
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div id="alert-1" class="absolute top-6 left-1/2 z-50 p-4 mb-4 text-sm {{ label == 'success-admin' ? 'text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800' : (label == 'error-admin' ? 'text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800' : 'text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-200 dark:text-gray-800') }}" role="alert">
+            {{ message }}
+            <button type="button" class="ms-auto -mx-1.5 -my-1.5 {{ label == 'success-admin' ? 'text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800' : (label == 'error-admin' ? 'text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800' : 'text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-200 dark:text-gray-800') }}" data-dismiss-target="#alert-1" aria-label="Close">
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
+                </svg>
+            </button>
+        </div>
+
+    {% endfor %}
+{% endfor %}

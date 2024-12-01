@@ -1,0 +1,76 @@
+{% extends 'admin/base.html.twig' %}
+{% block title %}Gestion de l'équipe{% endblock %}
+
+{% block body %}
+    <main>
+        <section>
+            <h1 class="text-center m-4 text-4xl">Gestion de l'équipe</h1>
+            <div class="container items-center">
+                <div class="relative overflow-x-auto">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">Avatar</th>
+                            <th scope="col" class="px-6 py-3" {% if admins.isSorted('Nom') %} class="sorted" {% endif %}>
+                                {{ knp_pagination_sortable(admins, 'Nom', 'lastName') }}
+                            </th>
+                            <th scope="col" class="px-6 py-3" {% if admins.isSorted('Prénom') %} class="sorted" {% endif %}>
+                                {{ knp_pagination_sortable(admins, 'Prénom', 'firstName') }}
+                            </th>
+                            <th scope="col" class="px-6 py-3" {% if admins.isSorted('Email') %} class="sorted" {% endif %}>
+                                {{ knp_pagination_sortable(admins, 'Email', 'email') }}
+                            </th>
+                            <th scope="col" class="px-6 py-3">Rôles</th>
+                            <th scope="col" class="px-6 py-3" {% if admins.isSorted('Désactiver') %} class="sorted" {% endif %}>
+                                {{ knp_pagination_sortable(admins, 'Désactiver', 'isDisabled') }}
+                            </th>
+                            <th scope="col" class="px-6 py-3">Action</th>
+                        </tr>
+                        <tbody>
+                        {% for user in admins %}
+                            <tr>
+                                <td class="px-6 py-4"><img src="{{ asset('images/avatar/' ~ user.image) }}" alt=""></td>
+                                <td class="px-6 py-4">{{ user.lastName }}</td>
+
+                                <td class="px-6 py-4">{{ user.firstName }}</td>
+                                <td class="px-6 py-4">{{ user.email }}</td>
+                                <td class="px-6 py-4">{{ user.roles[0] }}</td>
+                                <td class="px-6 py-4">{{ user.disabled ? 'oui' : 'non' }}</td>
+
+                                <td class="flex mt-4">
+                                    <a href="{{ path('app_admin_removerole', {id: user.id}) }}">
+                                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                        <svg class="w-6 h-6 mt-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M7 19H5a1 1 0 0 1-1-1v-1a3 3 0 0 1 3-3h1m4-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm7.441 1.559a1.907 1.907 0 0 1 0 2.698l-6.069 6.069L10 19l.674-3.372 6.07-6.07a1.907 1.907 0 0 1 2.697 0Z"/>
+                                        </svg>
+                                        {% endif %}
+                                    </a>
+                                    <a href="{{ path('app_admin_eyesadmin', {id: user.id}) }}">
+                                        {% if user.disabled %}
+                                            <svg class="w-6 h-6 mt-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.933 13.909A4.357 4.357 0 0 1 3 12c0-1 4-6 9-6m7.6 3.8A5.068 5.068 0 0 1 21 12c0 1-3 6-9 6-.314 0-.62-.014-.918-.04M5 19 19 5m-4 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                                            </svg>
+                                        {% else %}
+                                            <svg class="w-[25px] h-[25px] mt-4 text-gray-800 dark:text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-width="2" d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"/>
+                                                <path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                                            </svg>
+                                        {% endif%}
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="mt-6 flex justify-center">
+                {{ knp_pagination_render(admins, '/partials/pagination.html.twig') }}
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
+
+
+

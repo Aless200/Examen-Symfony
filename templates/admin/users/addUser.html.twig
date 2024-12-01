@@ -1,0 +1,21 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Ajouter un utilisateur{% endblock %}
+
+{% block body %}
+<main>
+    <section>
+        <h2 class="text-4xl text-center m-4">Ajouter un utilisateur</h2>
+        <div class="mt-10 max-w-2xl mx-auto">
+            {{ form_start(formAdminAdd) }}
+            {{ form_widget(formAdminAdd) }}
+
+            <input type="submit" class="inline-block w-full bg-indigo-500 hover:bg-indigo-600 p-4" value="s'enregistrer">
+            {{ form_end(formAdminAdd) }}
+        </div>
+    </section>
+</main>
+{% endblock %}
+
+
+

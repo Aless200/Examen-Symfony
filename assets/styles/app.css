@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+table img {
+    width: 75px;
+}
+
+.actuImg{
+    width: 80px;
+}
+
+.modalImg {
+    height: 180px;
+}
+
+.hero-section {
+    height: 200px;
+    background: url('../images/banner.jpg') no-repeat center center;
+    background-size: cover;
+}

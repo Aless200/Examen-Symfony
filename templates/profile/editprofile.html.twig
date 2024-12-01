@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier profil{% endblock %}
+
+{% block body %}
+<main>
+    <section>
+        <div class="mt-10 max-w-2xl mx-auto">
+            {{ form_start(formEditP) }}
+            {{ form_widget(formEditP) }}
+
+            <input type="submit" class="inline-block w-full bg-indigo-500 hover:bg-indigo-600 p-4" value="Modifier">
+            {{ form_end(formEditP) }}
+        </div>
+    </section>
+</main>
+{% endblock %}
+
+
+
